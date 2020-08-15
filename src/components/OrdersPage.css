@@ -1,0 +1,26 @@
+#cash{
+    margin-left: 20px;
+}
+#radio{
+    margin-left: 200px;
+}
+#order{
+    margin-left: 200px;
+}
+.child{
+    width: 200px;
+    margin-left: 200px;
+    margin-top: 140px
+  }
+
+@media screen and (max-width:800px) {
+    .child{
+        margin-left: 40px;
+    }
+    #order{
+        margin-left: 40px;
+    }
+    #radio{
+        margin-left: 40px;
+    }
+}

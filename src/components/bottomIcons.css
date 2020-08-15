@@ -1,0 +1,72 @@
+#divIcon{
+    display:flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    margin: auto;
+    max-width: fit-content;
+}
+
+#hr1{
+    border: 1px solid #b82635;
+    max-width:8em;
+}
+
+.icons{
+    display: flex;
+    font-size: 45px;
+    padding:20px;
+}
+#paragraph{
+    text-align: center;
+    font-family: 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;;
+    font-size: 30px;
+    text-align: center;
+}
+.pictureIcons{
+    margin-top:-10px;
+    width: 100px;
+    height : 100px;
+    padding: 10px;
+}
+.pictureIcon{
+    margin-top:-10px;
+    padding:20px;
+    width: 100px;
+    height : 100px
+}
+
+.spanItem{
+    display:flex;
+    flex-direction: column;
+    padding-left:20px;
+}
+@media screen and (max-width:800px) {
+    #divIcon{
+        flex-direction: row;
+    }
+    .icons{
+        margin-top:-10px;
+        font-size: 27px;
+        padding-left:5px;
+    }
+    .pictureIcons{
+        max-width: 70px;
+        max-height : 70px;
+    }
+    .pictureIcon{
+        margin-top:-5px;
+        padding:10px;
+        max-width: 80%;
+        max-height : 60px;
+    }
+    .spanItem{
+        font-size: 12px;;
+        padding-left:10px;
+    }
+    #paragraph{
+            text-align: center;
+            font-size: 19px;
+            text-align: center;
+    }
+
+}

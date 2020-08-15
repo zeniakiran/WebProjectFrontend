@@ -1,0 +1,38 @@
+
+#navbtn{
+    color:gray;
+}
+
+#collapsibleNavbar{
+    justify-content: center;
+    
+}
+li{
+    font-size: 16px;
+    font-family: serif;
+    padding-left: 20px;
+}
+.a{
+    font-family: serif;
+    color: black;
+    
+}
+.a:hover{
+    color: white;
+    display: block;
+    background-color:#dc3545;
+
+}
+
+.dropdown-menu{
+    background-color: white;;
+}
+.dropdown-item{
+    color: black;
+}
+.dropdown-item:hover{
+    background-color : dc#3545;
+}
+
+@media screen and (max-width:800px) {
+}

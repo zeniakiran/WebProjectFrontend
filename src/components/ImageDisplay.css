@@ -1,0 +1,41 @@
+#displaygrid{
+    display:flex;
+    flex-direction: row;
+    margin-left:100px;
+    max-width: fit-content;
+}
+#imagedisplay{
+    width: 400px;
+    width: 600px;
+    
+}
+#nameprice{
+    margin-left:180px;;
+    max-width:auto;
+    max-height:auto;
+}
+#namedisplay{
+    font-size: 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+#pricedisplay{
+    margin:auto;
+    font-size: 20px;
+    color : rgb(129, 124, 124);
+}
+#displaytf{
+    margin-top:20px;
+    border: none;
+    font-weight: bold;
+}
+@media screen and (max-width:800px){
+    #imagedisplay{
+        width: 300px;
+        width: 300px;
+        
+    }
+    #displaygrid{
+        margin-left:20px;
+        max-width: fit-content;
+    }
+}

@@ -1,0 +1,44 @@
+.im{
+    background-size: cover;
+    max-height: 50%;
+    max-width:60%;
+    margin-left: 250px;
+}
+.carousel-control-prev{
+    margin-left: 200px;
+}
+.carousel-control-next{
+    margin-right: 250px;
+}
+
+@media only screen and (max-width: 800px){
+    .im{
+        margin-left: 100px;
+        background-size: cover;
+        max-width:50%;
+        height:20%;
+    }
+    .carousel-control-prev{
+        display:none;
+    }
+    .carousel-control-next{
+        display:none;
+    }
+    .carousel-indicators{
+        margin-left:100px;
+        margin-bottom: 0px;
+        width:50%;
+    }
+}
+@media only screen and (max-width: 1100px){
+    .carousel-control-prev{
+        margin-left:200px
+    }
+    .carousel-control-next{
+        margin-right:100px;
+    }
+    .carousel-indicators{
+       
+    }
+
+}

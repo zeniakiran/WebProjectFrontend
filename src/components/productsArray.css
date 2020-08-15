@@ -1,0 +1,6 @@
+#dropdown{
+    display: flex;
+    flex-wrap: wrap;
+    width: 12em;
+    margin-left: 20px;
+}

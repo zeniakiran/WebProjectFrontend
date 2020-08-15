@@ -1,0 +1,25 @@
+.container{
+    position: fixed;
+    z-index:1;
+    height:100%;
+    border: 1px solid rgb(194, 188, 188);
+    background-color: white;
+    color: black;
+    max-width: 200px;
+    padding:20px;
+    margin-left:-40px;
+    margin-top: 11px;
+}
+#cartp{
+    font-size: 14px;;
+}
+#cartimg{
+    width: 70px;
+    height: 70px;
+}
+#linkcart{
+    text-decoration: none;
+    color: black;
+}
+
+

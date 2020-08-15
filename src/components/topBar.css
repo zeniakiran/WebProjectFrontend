@@ -1,0 +1,126 @@
+.d-flex{
+    display: flex;
+    flex-wrap: wrap;
+    background: rgb(0, 0, 0); 
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1; 
+    max-width: 100%; 
+    padding: 10px;
+    position: sticky;
+    top:0;
+}
+body{
+    width:100%;
+    height:100%;
+}
+
+#labelDiv{
+    flex-grow:4;
+}
+
+#logo{
+    margin-top:0px;
+    width: 15%;
+    height:auto
+}
+
+#iconDiv{
+    margin-top: 20px;
+    flex-grow:1;
+}
+.fnt{
+   font-family: serif;
+   font-size: 50px;
+}
+.red{
+    color: #b91122;
+    transform: rotate(-25deg);
+}
+#searchdiv{
+    margin-top: 20px;
+    flex-shrink:1;
+    height:20%;
+}
+#icnDiv{
+    margin-right:80px;
+    margin-top:50px;
+}
+#text{  
+    display: inline-block;
+    border-radius: 20px;
+    height: 30px;
+    width: 80%;
+    
+}
+
+#mybtn{
+    border-radius: 15px;
+    margin-top:-5px;
+    height:40px;
+    width:10%;
+    display: inline-block;
+}
+
+#reg{
+    padding-left:15px;
+    font-size: 22px;
+}
+#reg a{
+    color: #f1f1f1;
+}
+#reg  :hover{
+    text-decoration: none;
+}
+#phone{
+    font-size:16px;
+    padding-right:10px;
+}
+#searchIcon{
+    padding-left:8px;
+}
+#pop{
+    padding-left:10px;
+    color: #f1f1f1;
+}
+
+.cartIcon{
+    margin-top: 15px;
+    padding-left: 0px;
+    font-size: 22px;
+}
+
+#cartdiv{
+    
+}
+#list{
+    list-style-type: none;
+    margin-left: 160px;
+    width:50%;
+}
+#myLi{
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+@media screen and (max-width:800px) {
+
+    .d-flex{
+        display: flex;
+        flex-direction: row;
+
+    }
+    #iconDiv{
+        flex-direction: row;
+    }
+    #phoneNo{
+        font-size: 12px;
+    }
+    #phone{
+        font-size: 12px;
+    }
+    #icnDiv{
+        margin-top: 0px;;
+        flex-wrap: nowrap;
+    }
+}
+

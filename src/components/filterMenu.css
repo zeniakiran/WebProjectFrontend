@@ -1,0 +1,16 @@
+#filtergrid{
+    display:flex;
+    position: absolute;
+    max-width: 220px;
+    padding: 30px;
+    border: 1px solid rgba(168, 168, 172, 0.753);
+    margin-left:20px;
+    margin-top:80px;
+}
+.filterinput{
+    margin:20px;
+}
+.filterlabel{
+    font-family: serif;
+    font-size: 18px;
+}
