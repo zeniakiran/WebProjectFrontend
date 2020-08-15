@@ -5,7 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import picture from "../../src/pictures/bacground1.jpg";
-import { CardActionArea, Grid,Fab, Snackbar } from '@material-ui/core';
+import { CardActionArea, Grid,Fab, Snackbar, Button } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import productService from './services/ProductService';
@@ -30,12 +30,12 @@ const useStyles = makeStyles((theme) => ({
    
   }));
 
-const SingleProduct = ({product, onDelete,history})=>{
+const SingleOrder = (props)=>{
     useEffect(()=>{
         console.log("In Single Prod")
-    },[product]);
+    },[props.orders]);
     const classes = useStyles();
-    
+    console.log(" Orders",props)
     /*const deleteProductHandler = () =>{
         productService.deleteItem(product._id).then((data)=>{
             setElem(
@@ -52,39 +52,38 @@ const SingleProduct = ({product, onDelete,history})=>{
     }*/
     return (
     <div className={classes.diV}>
-            <Typography gutterBottom variant="h5" component="h2">
-                {product.name}
+
+            <Typography variant="body2" component="p">First Name : 
+                {props.orders.customerFName}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">Price: 
-                {product.price}
+            <Typography variant="body2" component="p">Last Name : 
+                {props.orders.customerLName}
             </Typography>
-            <Typography gutterBottom variant="h5" component="h2">
-                {product.name}
+            <Typography variant="body2" component="p">Email :
+                {props.orders.customerEmail}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">Price: 
-                {product.price}
+            <Typography variant="body2" component="p">Address : 
+                {props.orders.customerAddress}
             </Typography>
-            <Typography gutterBottom variant="h5" component="h2">
-                {product.name}
+            <Typography variant="body2" component="p">Country :
+                {props.orders.customerCountry}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">Price: 
-                {product.price}
+            <Typography variant="body2"  component="p">Ordered Products: 
+                {props.orders.productsOrdered+", "}
             </Typography>
-            <Typography gutterBottom variant="h5" component="h2">
-                {product.name}
+            <Typography variant="body2" component="p">Phone No :
+                {props.orders.Phone}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">Price: 
-                {product.price}
+            <Typography variant="body2" component="p">Total Price : 
+                {props.orders.totalPrice}
             </Typography>
-        <Fab color="secondary" aria-label="add" className={classes.icon}>
-            <DeleteIcon />
-        </Fab>
-        <Fab color="primary" aria-label="add" className={classes.icon}>
-            <EditIcon/>
-        </Fab> 
+        <Button color="secondary" className={classes.icon}>
+            Delete
+        </Button>
+        
         <hr></hr>
     </div>   
 );              
 }
 
-export default withRouter(SingleProduct);
+export default withRouter(SingleOrder);

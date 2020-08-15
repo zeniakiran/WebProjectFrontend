@@ -23,6 +23,17 @@ const Cart = (props) =>{
             setVal(totalPrice);
         })
     }
+    let elem = null;
+    if(cartItems.length === 0 ){
+        elem = (<p id="pg">Your Cart is Empty</p>)
+    }
+    else{
+        elem = (
+            cartItems.map((element,index)=>(
+                <ShoppingCartPage key={index} itemArray={element}/>
+                ))
+        );
+    }
     return (
         <Grid container direction="column">
             <Navbar/>
@@ -34,9 +45,7 @@ const Cart = (props) =>{
                 <br></br>
                 <br></br>
                 <br></br>  
-                {cartItems.map((element,index)=>(
-                <ShoppingCartPage key={index} itemArray={element}/>
-                ))}
+                {elem}
                 <br></br>
                 <hr></hr>
                 <Grid >

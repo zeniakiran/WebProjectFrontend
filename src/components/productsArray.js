@@ -134,7 +134,7 @@ const useStyles = makeStyles((theme) => ({
           }
           
 
-          const getData = () => {
+        const getData = () => {
              productService.getItem()
             .then((data) => setProduct(data))
             .catch((err) => console.log("This is err"+ err));

@@ -62,18 +62,6 @@ const Order = (props) => {
   },[])
   //console.log(totalPrice)
   const placeOrderHandler = () =>{
-    //setproductsOrdered(cartItems.item);
-    //setTotalPrice(totalPrice1);
-    //console.log(cartItems[0].item)
-    /*cartItems.map((item) => {
-        //setproductsOrdered(item.item);
-        //let it = item.item;
-        arr = item.item
-        //console.log(productsOrdered)
-    })*/
-    
-    
-    
        if(customerEmail === "" || customerFName === "" || customerLName === "" || 
          customerAddress === "" || customerCountry === ""){
         toast.error("All fields are required!", {
@@ -106,7 +94,10 @@ const Order = (props) => {
           }).catch((err)=>{
               console.log(err);
           })
-          
+          localStorage.removeItem('itemsArray');
+          toast.success("Order placed successfully!", {
+            position: toast.POSITION.TOP_LEFT,
+          });
       }
   }
 

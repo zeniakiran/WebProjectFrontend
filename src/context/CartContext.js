@@ -7,18 +7,12 @@ const CartContextProvider = (props) =>{
         let existingEntries = localStorage.getItem("itemsArray");
         return existingEntries ? JSON.parse(existingEntries) : []
     });
-    const [check, setCheck] = useState(false);
-    let totalPrice1=0;
     useEffect(()=>{
         localStorage.setItem("itemsArray", JSON.stringify(cartItems));
     },[cartItems])
     
-    totalPrice1 = cartItems.map((item) => {
-        totalPrice1 = totalPrice1 + (item.quantity * item.price);
-        //setVal(totalPrice);
-    })
     return (
-        <CartContext.Provider value = {{cartItems,check,totalPrice1,setCheck, dispatch}}>
+        <CartContext.Provider value = {{cartItems, dispatch}}>
             {props.children}
         </CartContext.Provider>
     );

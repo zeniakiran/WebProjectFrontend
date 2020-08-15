@@ -71,7 +71,7 @@ const ImageDisplay = (props) =>{
                 })
                 console.log("count",count);
                 if(count>=1){
-                    console.log("Already present in cart");
+                    setElem(<Alert severity="error">Item is already present in Cart</Alert>)
                 }
                 else{
                     console.log("Adding");

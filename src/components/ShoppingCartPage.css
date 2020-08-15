@@ -22,7 +22,7 @@
 }
 #rembtn{
     margin-top:50px;
-    margin-left: 100px;
+    margin-left: 0px;
 }
 #hrStyle{
     border: "1px solid red";
@@ -39,16 +39,23 @@
     font-weight: bold;
     border: none;
 }
+#carttf{
+    width: 20%;
+    border: none;
+}
 @media screen and (max-width:800px) {
     #typo1{
         margin-top:250px;;
-        margin-left: -100px;
+        margin-left: -140px;
+    }
+    #btngrp{
+        margin-left:-30px;
     }
     .mediaCart{
         margin-left:0px;
     }
     #rembtn{
-        margin-top:250px;;
-        margin-left: 0px;
+        margin-top:300px;;
+        margin-left: -310px;
     }
 }

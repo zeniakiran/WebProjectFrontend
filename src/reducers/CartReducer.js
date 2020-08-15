@@ -10,8 +10,10 @@ const CartReducer = (state,action) =>{
             }]
         case 'removeCartItem':
                 return state.filter(cartItem => cartItem.id !== action.id)
-        //case 'calculateTotal':
-                //return 
+        case 'setQuantity':
+                return [...state,{
+                    quantity: action.cartItem.quantity
+                }]
         default:
             return state
 
