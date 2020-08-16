@@ -42,7 +42,7 @@ function App() {
             <Login/>
         </Route>
         <Route path="/register" exact>
-            <Register/>
+        {userService.IsLoggedIn ? <Redirect to="/login" /> : <Register />}
         </Route>
         <Route path="/orders" exact>
             <Order/>

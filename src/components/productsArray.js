@@ -29,6 +29,9 @@ const useStyles = makeStyles((theme) => ({
       btn2: {
         left: 20
       },
+      btn3: {
+        left: 50
+      },
       lbl: {
         position: "absolute",
         top: 18,
@@ -206,6 +209,12 @@ const useStyles = makeStyles((theme) => ({
                      className = {classes.btn2} color="primary">
                         View Orders
                     </Button>
+                    <Link to="/register">
+                    <Button variant="contained" 
+                     className = {classes.btn3} color="primary">
+                        Register Admin
+                    </Button>
+                    </Link>
                     </Link>
                     <Dialog open={open} onClose={closeOnClickHandler} aria-labelledby="form-dialog-title" >
                     <Backdrop className={classes.backdrop} open={open} onClick={closeOnClickHandler}>

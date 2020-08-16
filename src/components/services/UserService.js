@@ -11,7 +11,7 @@ class UserService extends GenericService{
             reject()
         })
     });
-    register = (name,email, password) => this.post('users/register', {name,email,password})
+    register = (name,email, password) =>this.post('users/register', {name,email,password})
     logout = () => localStorage.removeItem("token");
     isLoggedIn = () => {
         return localStorage.getItem("token") ? true : false;
