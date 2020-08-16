@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { Alert } from "react-bootstrap";
 import orderService from "./services/OrderService";
 import { CartContext } from "../context/CartContext";
+import { useHistory } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
@@ -36,8 +37,7 @@ const Order = (props) => {
   const [Phone, setPhone] = useState(0);
   let arr=[];
   let totalPrice1=0;
-  //let productsOrdered = "Bed"+","+"Sofa";
-  //let totalPrice = 100000
+  let history =  useHistory();
   const [open, setOpen] = React.useState(false);
   
   useEffect(()=>{
@@ -85,6 +85,7 @@ const Order = (props) => {
           toast.success("Order placed successfully!", {
             position: toast.POSITION.TOP_LEFT,
           });
+          history.push('/cart');
       }
   }
 

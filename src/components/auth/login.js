@@ -28,13 +28,13 @@ const Login = (props) => {
   const [email, setEmail] = React.useState("zeniakiran50@gmail.com");
   const [password, setPassword] = React.useState("zk1234567");
   return (
-    <body id="bigdiv">
+    <div id="bigdiv">
     <Link to="/"><Button variant="contained" 
      className ={classes.butn}>Home</Button></Link>
     <div className = "containerlogin" >
     <i className="fa fa-user usericon" aria-hidden="true"></i>
       <div className={classes.child}>
-      <input type="email" class="form-control" placeholder="Email" 
+      <input type="email" className="form-control" placeholder="Email" 
          className="tf" value ={email} onChange={(e) => {
           setEmail(e.target.value);
           }}></input>
@@ -67,7 +67,7 @@ const Login = (props) => {
           Login
         </Button>
     </div>
-    </body>
+    </div>
   );
 };
 

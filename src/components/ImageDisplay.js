@@ -1,27 +1,46 @@
-import React from 'react';
-import { Grid, ButtonGroup, Button } from '@material-ui/core';
+import React, { useState, useEffect, useContext } from 'react';
+import { Grid, ButtonGroup, Button, makeStyles } from '@material-ui/core';
 import Topbar from "./topBar"
 import Navbar from "./navbar"
+import productService from "../components/services/ProductService"
+import { CartContext } from '../context/CartContext'
 import "./ImageDisplay.css";
-
-var image = localStorage.getItem("imgUrl");
+import {useHistory, useLocation } from 'react-router-dom';
+import Alert from '@material-ui/lab/Alert';
+import { toast } from 'react-toastify';
+/*var image = localStorage.getItem("imgUrl");
 var name = localStorage.getItem("name");
 var price = localStorage.getItem("price");
-let cartItems1=[{}];
+let pVal = price.split(":");
+let prices = parseInt(pVal[1]);
+console.log(prices)*/
 
 //localStorage.clear();
+const useStyles = makeStyles((theme) => ({
+    root: {
+      width: '100%',
+      '& > * + *': {
+        marginTop: theme.spacing(2),
+      },
+    },
+  }));
 const ImageDisplay = (props) =>{
     const [value,setValue] = React.useState(0);
-    const [item, setItem] = React.useState("");
-    const [url, setUrl] = React.useState();
-    const [pp, setP] = React.useState(0);
-    const [check, setCheck] = React.useState(false);
-    //const [noOfItem, setNoOfItem]= React.useState(0);
-    const [cartItems , setCartItems] = React.useState([{}]);
-    //const [count , setCount] = React.useState(1);
-    const [test,settest] = React.useState(false)
-    //let cartItems = [];
+    const id = props.match.params.id;
+    const [product, setProduct] = useState([])
+    const {cartItems} = useContext(CartContext);
+    const {dispatch} = useContext(CartContext);
+    const [elem, setElem] = React.useState(null);
     let count=0;
+    
+    const classes = useStyles();
+    
+    useEffect(() =>{
+        productService.getItemById(id).then((data)=> setProduct(data))
+        .catch((err) => console.log("This is err"+ err));
+        
+    }, [])
+
     const incrementHandler = () =>{
         setValue(value+1);
     }
@@ -31,106 +50,68 @@ const ImageDisplay = (props) =>{
         else
             setValue(value-1);
     }
-    
-    
-    const addToCartHandler = (e) =>{
-        let imgUrl = e.target.parentNode.parentNode.previousSibling.childNodes[0].currentSrc;
-        let itemName = e.target.parentNode.parentNode.childNodes[0].innerHTML;
-        let price =e.target.parentNode.parentNode.childNodes[1].innerHTML;
-
-        let pVal = price.split(":");
-        let res = parseInt(pVal[1]);
-
-        //console.log(cartItems);
-        //setCartItems({imgUrl, itemName,res});
-
-        var existingEntries = JSON.parse(localStorage.getItem("allEntries"));
-        if(localStorage.getItem("allEntries") == null) {
-            existingEntries = [];
-            setCartItems({imgUrl, itemName,res});
-            localStorage.setItem("item", JSON.stringify(cartItems));
-                existingEntries.push(cartItems);
-                localStorage.setItem("allEntries", JSON.stringify(existingEntries));
+    console.log("Item",cartItems);
+    const addtoCartHandler = () =>{
+        //let elem = null;
+        setElem(null);
+        let id = product._id
+        let url = product.imgUrl;
+        let item = product.name;
+        let price = product.price;
+        let quantity= value;
+        let data = {
+            id,url,item,price,quantity
+        }
+        if(value !==0){
+                if(cartItems.length === 1 || cartItems.length>1 ){
+                cartItems.find((item) =>{ 
+                    if(item.id === data.id) 
+                        count= count+1;
+                        
+                })
+                console.log("count",count);
+                if(count>=1){
+                    setElem(<Alert severity="error">Item is already present in Cart</Alert>)
+                }
+                else{
+                    console.log("Adding");
+                    dispatch({type: 'addCartItem', cartItem: data})
+                    toast.success("Product added in the Cart!", {
+                        position: toast.POSITION.TOP_LEFT,
+                      });
+                }
+            }
+            else if(cartItems.length === 0){
+                console.log("No items until now adding yours");
+                dispatch({type: 'addCartItem', cartItem: data})
+                toast.success("Product added in the Cart!", {
+                    position: toast.POSITION.TOP_LEFT,
+                  });
+            }
         }
         else{
-            console.log(cartItems);
-            Object.keys(cartItems).forEach((elem)=>{
-                if(cartItems.res === res)
-                console.log(true);
-                else{
-                console.log(false);
-                setCartItems({imgUrl, itemName,res});
-                localStorage.setItem("item", JSON.stringify(cartItems));
-                existingEntries.push(cartItems);
-                localStorage.setItem("allEntries", JSON.stringify(existingEntries));
-                }
-            })
+            setElem(
+                <div className={classes.root}>
+                <Alert severity="error">Please Set a Value for Quantity</Alert>
+                </div>
+            )
         }
         
+        
     }
-    const dummyHandler = (e) =>{
-        let imgUrl = e.target.parentNode.parentNode.previousSibling.childNodes[0].currentSrc;
-        let itemName = e.target.parentNode.parentNode.childNodes[0].innerHTML;
-        let price =e.target.parentNode.parentNode.childNodes[1].innerHTML;
-
-        let pVal = price.split(":");
-        let res = parseInt(pVal[1]);
-        var existingEntries = JSON.parse(localStorage.getItem("allEntries"));
-        //if(value === 0)
-            //console.log("Please set Quantity");
-        //else{
-        if(localStorage.getItem("allEntries") == null) {
-            existingEntries = [];
-            cartItems1 = [{imgUrl, itemName,res,value}];
-            localStorage.setItem("item", JSON.stringify(cartItems1));
-                existingEntries.push(cartItems1);
-                localStorage.setItem("allEntries", JSON.stringify(existingEntries));
-        }
-        else{
-            for(var i=0 ; i<existingEntries.length; i++){
-                if(existingEntries[i][0].res === res){
-                   count = count + 1;
-                }
-            }
-            if(count>0)
-            {
-                console.log("Product Exist in Cart already");
-            }
-            else if(count===0){
-                console.log("inide");
-                    cartItems1 = [{imgUrl, itemName,res,value}];
-                    localStorage.setItem("item", JSON.stringify(cartItems1));
-                    existingEntries.push(cartItems1);
-                    localStorage.setItem("allEntries", JSON.stringify(existingEntries));
-                }
-    }
-    
-    }
-    
-    const dummyHandler1 = (e) =>{
-        //console.log(e.target);
-        setUrl(e.target.parentNode.parentNode.previousSibling.childNodes[0].currentSrc);
-        setItem(e.target.parentNode.parentNode.childNodes[0].innerHTML);
-        let price =e.target.parentNode.parentNode.childNodes[1].innerHTML;
-
-        let pVal = price.split(":");
-        let res = parseInt(pVal[1]);
-        setP(res);
-        console.log(url,item)
-    }
-    
     return (
-    <Grid>
+        <Grid>
+        {elem}
         <Topbar/>
         <Navbar/>
         <br></br><br></br><br></br>
         <Grid container spacing={4} id="displaygrid">
             <Grid item xs={6} id="imagegrid" >
-                <img src={image} alt="" id="imagedisplay" ></img>
+                <img src={product.imgUrl} alt="" id="imagedisplay" ></img>
             </Grid>
             <Grid item xs={3} id="nameprice">
-                <p  id="namedisplay">{name}</p>
-                <p id="pricedisplay">{price}</p>
+                <p  id="namedisplay">{product.name}</p>
+                <p id="pricedisplay">{product.price}</p>
                 <br></br>
                 <p>Quantity </p>
                 <ButtonGroup disableElevation variant="contained">
@@ -139,7 +120,8 @@ const ImageDisplay = (props) =>{
                 </ButtonGroup>
                 <input type="text" value ={value} id="displaytf" disabled></input>
                 <br></br><br></br>
-                <Button color="secondary" variant="contained" onClick={dummyHandler}>Add to Cart</Button>
+                <Button color="secondary" variant="contained" 
+                 onClick={addtoCartHandler}>Add to Cart</Button>
             </Grid>
         </Grid>
     </Grid>

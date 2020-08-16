@@ -1,5 +1,6 @@
 import GenericService from "./GenericService";
 import jwtDecode from "jwt-decode";
+import { toast } from "react-toastify";
 class UserService extends GenericService{
     login = (email, password) => new Promise ((resolve,reject)=>{
         this.post('users/login', {email, password})
@@ -14,7 +15,15 @@ class UserService extends GenericService{
     register = (name,email, password) =>this.post('users/register', {name,email,password})
     logout = () => localStorage.removeItem("token");
     isLoggedIn = () => {
+      try{
         return localStorage.getItem("token") ? true : false;
+      }
+      catch(err){
+        toast.error("Error!", {
+          position: toast.POSITION.TOP_LEFT,
+        });
+      };
+        
       };
       getLoggedInUser = () => {
         try {

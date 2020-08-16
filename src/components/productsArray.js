@@ -209,13 +209,14 @@ const useStyles = makeStyles((theme) => ({
                      className = {classes.btn2} color="primary">
                         View Orders
                     </Button>
+                    </Link>
                     <Link to="/register">
                     <Button variant="contained" 
                      className = {classes.btn3} color="primary">
                         Register Admin
                     </Button>
                     </Link>
-                    </Link>
+                    
                     <Dialog open={open} onClose={closeOnClickHandler} aria-labelledby="form-dialog-title" >
                     <Backdrop className={classes.backdrop} open={open} onClick={closeOnClickHandler}>
                     </Backdrop>

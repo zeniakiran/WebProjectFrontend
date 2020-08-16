@@ -46,6 +46,18 @@
     margin-top:250px;
     margin-left: 80px;
 }
+#aboutdiv{
+    text-align: justify;
+    margin: auto;
+    color: rgb(189, 39, 39);
+    font-size: 18px;;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    width: 50%;
+}
+#abt{
+    background-color: #ddd8d8;
+    
+}
 @media screen and (max-width:800px){
     .grid{
         justify-content: center

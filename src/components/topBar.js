@@ -1,22 +1,47 @@
 import React, {useState,useEffect} from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import logo from "../pictures/logo.jpg"
 //import Cart  from "./Cart";
 import "./topBar.css";
 
-const products = ["Bed","Dressing","Sofa"];
+const products = ["Bed","Dressing","Sofa","Wardrobe","Dining", "Table","OfficeChairs"];
 const TopBar =()=>{
     const [input,setInput]= useState("");
     const [users, setUsers]=useState([]);
     const [show,setShow]= useState(false);
-
+    let history = useHistory();
     const  onChangeHandler =(event)=>{
       setInput(
          event.target.value
       )};
-
+      let comp = null;
+    const liClick = (e) =>{
+      console.log(e.target.innerHTML);
+      
+      if(e.target.innerHTML === "Bed"){
+        history.push("/beds")
+      }
+      if(e.target.innerHTML === "Dressing"){
+         history.push("/dressingtables")
+      }
+      if(e.target.innerHTML === "Sofa"){
+        history.push("/sofas")
+      }
+      if(e.target.innerHTML === "Wardrobe"){
+        history.push("/Wardrobes")
+      }
+      if(e.target.innerHTML === "Dining"){
+        history.push("/DiningTables")
+      }
+      if(e.target.innerHTML === "Table"){
+        history.push("/Tables")
+      }
+      if(e.target.innerHTML === "OfficeChairs"){
+        history.push("/Chairs")
+      }
+    }
     const cartHandler = () =>{
       setShow(!show)
     };
@@ -59,7 +84,8 @@ const TopBar =()=>{
                 <i className="fa fa-search" id="searchIcon"></i>
                 {input.length > 0 ? (
                 <ul id="list"> 
-                    {users.map(item => <li id="myLi">{item}</li>)}
+                    {users.map(item => <li id="myLi" onClick={liClick}>{item}</li>)}
+                    {comp}
                 </ul>
                 ) : null }
                 

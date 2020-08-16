@@ -33,6 +33,20 @@ const Popular = () =>{
             <br></br><br></br>
             </Grid>
             {elem}
+            <br /><br />
+            <Grid item xs={12}>
+            <br></br><br></br><hr></hr>
+                <p id ="pg">About Us</p>
+                <div id="abt">
+                <br></br>
+                <p id="aboutdiv">Our Funiture brand DECOR that has been in operation for over 10 years. 
+                We deliver a wide range of high-quality furniture and home accessory items for 
+                all forms of modern life. With a commitment to delivering high quality furniture and home accessories, DECOR 
+                answers all modern lifestyle’s with function and designing all categories of living. </p>
+                <br></br>
+                </div>
+                <br></br>
+            </Grid>
         </Grid>
     );
 }

@@ -23,6 +23,9 @@ const Cart = (props) =>{
             setVal(totalPrice);
         })
     }
+    const proceedHandler =  () =>{
+        history.push('/orders');
+    }
     let elem = null;
     if(cartItems.length === 0 ){
         elem = (<p id="pg">Your Cart is Empty</p>)
@@ -53,6 +56,8 @@ const Cart = (props) =>{
                      value={value + " "+"Pkr"} disabled ></input>
                     <Button variant="contained" color="secondary"
                      onClick = {calculateHandler} id="calgrid" >Calculate</Button>
+                     <Button variant="contained" color="secondary"
+                     onClick = {proceedHandler} id="calgrid" >Proceed</Button>
                 </Grid>
                 <br></br>
                 <hr></hr>

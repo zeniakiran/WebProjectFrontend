@@ -36,19 +36,19 @@ function App() {
             <MainPage/>
         </Route>
         <Route path="/Page2" exact>
-        {userService.IsLoggedIn ? <Redirect to="/login" /> : <Page2 />}
+        {userService.isLoggedIn() ? <Page2 /> : <Redirect to="/login" />}
         </Route>
         <Route path="/login" exact>
             <Login/>
         </Route>
-        <Route path="/register" exact>
-        {userService.IsLoggedIn ? <Redirect to="/login" /> : <Register />}
-        </Route>
         <Route path="/orders" exact>
             <Order/>
         </Route>
+        <Route path="/register" exact>
+        {userService.isLoggedIn() ? <Register /> : <Redirect to="/login" />}
+        </Route>
         <Route path="/orderdisplay" exact>
-        {userService.IsLoggedIn ? <Redirect to="/login" /> : <Page2 />}
+        {userService.isLoggedIn() ? <OrderDisplay /> : <Redirect to="/login" />}
         </Route>
         <Route path="/update/:id" render={(props) => (
         <UpdateProduct {...props} key={props.location.key} />

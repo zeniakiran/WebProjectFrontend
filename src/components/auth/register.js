@@ -28,7 +28,8 @@ const Register = (props) => {
   const [name, setName] = React.useState("");
   let history = useHistory();
   return (
-    <body id="bigdiv">
+    
+    <div id="bigdiv">
     <div className= "containerlogin">
       <div className={classes.child}>
         <input
@@ -85,7 +86,7 @@ const Register = (props) => {
         </Button>
       </div>
     </div>
-    </body>
+    </div>
   );
 };
 
