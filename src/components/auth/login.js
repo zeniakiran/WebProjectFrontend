@@ -4,6 +4,7 @@ import { TextField, Button } from "@material-ui/core";
 import userService from "../services/UserService";
 import "./login.css"
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -17,7 +18,10 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "100px",
     marginTop: "40px",
   },
-  
+  butn:{
+    top:20,
+    left: 20
+  }
 }));
 const Login = (props) => {
   const classes = useStyles();
@@ -25,6 +29,8 @@ const Login = (props) => {
   const [password, setPassword] = React.useState("zk1234567");
   return (
     <body id="bigdiv">
+    <Link to="/"><Button variant="contained" 
+     className ={classes.butn}>Home</Button></Link>
     <div className = "containerlogin" >
     <i className="fa fa-user usericon" aria-hidden="true"></i>
       <div className={classes.child}>

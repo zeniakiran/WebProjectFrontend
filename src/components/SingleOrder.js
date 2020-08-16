@@ -11,6 +11,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import productService from './services/ProductService';
 import Alert from '@material-ui/lab/Alert';
 import { withRouter } from 'react-router';
+import orderService from './services/OrderService';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -36,18 +37,12 @@ const SingleOrder = (props)=>{
     },[props.orders]);
     const classes = useStyles();
     console.log(" Orders",props)
-    /*const deleteProductHandler = () =>{
-        productService.deleteItem(product._id).then((data)=>{
-            setElem(
-            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                <Alert onClose={handleClose} severity="success">
-                  This is a success message!
-                </Alert>
-              </Snackbar>)
-              onDelete();
+    const deleteProductHandler = () =>{
+        orderService.deleteItem(props.orders._id).then((data)=>{
+              props.onDelete();
         }).catch((err) => console.log(err));    
     }
-    const editProductHandler =() =>{
+    /*const editProductHandler =() =>{
         history.push('/update/'+product._id);
     }*/
     return (
@@ -77,10 +72,11 @@ const SingleOrder = (props)=>{
             <Typography variant="body2" component="p">Total Price : 
                 {props.orders.totalPrice}
             </Typography>
-        <Button color="secondary" className={classes.icon}>
+            <br />
+        <Button variant = "contained" color="secondary"
+         onClick = {deleteProductHandler}>
             Delete
         </Button>
-        
         <hr></hr>
     </div>   
 );              

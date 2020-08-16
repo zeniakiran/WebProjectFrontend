@@ -39,18 +39,7 @@ const Order = (props) => {
   //let productsOrdered = "Bed"+","+"Sofa";
   //let totalPrice = 100000
   const [open, setOpen] = React.useState(false);
-  let elem = null;
-  const handleClick = () => {
-    setOpen(true);
-  };
-
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setOpen(false);
-  };
+  
   useEffect(()=>{
     for(var i =0; i<cartItems.length; i++){
         productsOrdered[i]=cartItems[i].item;
@@ -60,7 +49,7 @@ const Order = (props) => {
     setTotalPrice(totalPrice1)
     console.log(totalPrice)
   },[])
-  //console.log(totalPrice)
+
   const placeOrderHandler = () =>{
        if(customerEmail === "" || customerFName === "" || customerLName === "" || 
          customerAddress === "" || customerCountry === ""){
@@ -88,9 +77,7 @@ const Order = (props) => {
           orderService.addItem({customerFName,customerLName,customerEmail,customerAddress,
             customerCountry,productsOrdered, Phone, totalPrice})
           .then((data) =>{
-                toast.error("Successfully Added!", {
-                position: toast.POSITION.TOP_LEFT,
-              });
+                console.log(data);
           }).catch((err)=>{
               console.log(err);
           })
@@ -103,7 +90,6 @@ const Order = (props) => {
 
   return (
     <div>
-    {elem}
     <br /><br />
       <p id="pg">Fill Info</p>
       <hr id="hr1"></hr>

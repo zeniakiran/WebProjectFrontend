@@ -11,7 +11,7 @@ import "./productsArray.css";
 import { Alert } from 'react-bootstrap';
 import userService from './services/UserService';
 import { toast } from "react-toastify";
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     btn: {
@@ -25,6 +25,9 @@ const useStyles = makeStyles((theme) => ({
         top: 18,
         right:130,
         width: 100
+      },
+      btn2: {
+        left: 20
       },
       lbl: {
         position: "absolute",
@@ -51,14 +54,14 @@ const useStyles = makeStyles((theme) => ({
         const classes = useStyles();
         const [products, setProduct] = useState([]); 
         const [open, setOpen] = useState(false);
-        ////const [name, setName] = useState("");
+        const [name, setName] = useState("");
         //const [price, setPrice] = useState();
         const [option,setOption]=useState('Beds');
         const [optionArray,setOptionArray]=useState([...products]);
         const [imgUrl, setImgUrl]= useState('');
         const [type, setType] = useState('');
         const [loading,setLoading] = useState(true);
-        let name="";
+        //let name="";
         let price=0;
         let history = useHistory();
         //let type='';
@@ -73,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
   
   
         const nameChangeHandler = (event) =>{
-            name=event.target.value;
+            setName(event.target.value);
             console.log(name);
         }
   
@@ -90,11 +93,15 @@ const useStyles = makeStyles((theme) => ({
           const addClickHandler = () =>{
               productService.addItem({type,name,price,imgUrl})
               .then((data)=>{
-                  console.log("Added successfully",products);
+                toast.success("Successfully Added!", {
+                    position: toast.POSITION.TOP_LEFT,
+                  });
                   getData();
                   setOpen(false);
                 })
-              .catch((err)=>{console.log("Some Err")})
+              .catch((err)=>{toast.error("Error!", {
+                position: toast.POSITION.TOP_LEFT,
+              });})
           }
           
 
@@ -136,7 +143,9 @@ const useStyles = makeStyles((theme) => ({
 
         const getData = () => {
              productService.getItem()
-            .then((data) => setProduct(data))
+            .then((data) => {
+                setProduct(data)
+            })
             .catch((err) => console.log("This is err"+ err));
         }
 
@@ -177,6 +186,9 @@ const useStyles = makeStyles((theme) => ({
                         <option>Dressing</option>
                         <option>DiningTable</option>
                         <option>Sofa</option>
+                        <option>Table</option>
+                        <option>Wardrobe</option>
+                        <option>OfficeChair</option>
                     </select>
             </Grid>
             {console.log(" name" ,userService.getLoggedInUser.name)}
@@ -190,6 +202,11 @@ const useStyles = makeStyles((theme) => ({
                         Log Out
                     </Button>
                     <label className = {classes.lbl}>{userService.getLoggedInUser().name}</label>
+                    <Link to = "/orderdisplay"><Button variant="contained" 
+                     className = {classes.btn2} color="primary">
+                        View Orders
+                    </Button>
+                    </Link>
                     <Dialog open={open} onClose={closeOnClickHandler} aria-labelledby="form-dialog-title" >
                     <Backdrop className={classes.backdrop} open={open} onClick={closeOnClickHandler}>
                     </Backdrop>
@@ -197,6 +214,7 @@ const useStyles = makeStyles((theme) => ({
                     <DialogContent>
                     <Grid className = {classes.width}>
                     <select onChange = {selectHandler}>
+                        <option diabled>Choose Category</option>
                         <option>Beds</option>
                         <option>DiningTable</option>
                         <option>Dressing</option>
@@ -213,9 +231,9 @@ const useStyles = makeStyles((theme) => ({
                     onChange = {ImageUploadHandler}
                     >
                     </input><br></br>
-                    <TextField required  label="Item Name" className={classes.textwidth} 
+                    <TextField required label="Item Name" className={classes.textwidth} 
                      onChange={nameChangeHandler}/><br></br>
-                    <TextField required  label=" ItemPrice" className={classes.textwidth} 
+                    <TextField required label=" ItemPrice" className={classes.textwidth} 
                      onChange={priceChangeHandler}/>
                     </Grid>
                 </DialogContent>

@@ -7,6 +7,7 @@ import { CartContext } from '../context/CartContext'
 import "./ImageDisplay.css";
 import {useHistory, useLocation } from 'react-router-dom';
 import Alert from '@material-ui/lab/Alert';
+import { toast } from 'react-toastify';
 /*var image = localStorage.getItem("imgUrl");
 var name = localStorage.getItem("name");
 var price = localStorage.getItem("price");
@@ -76,11 +77,17 @@ const ImageDisplay = (props) =>{
                 else{
                     console.log("Adding");
                     dispatch({type: 'addCartItem', cartItem: data})
+                    toast.success("Product added in the Cart!", {
+                        position: toast.POSITION.TOP_LEFT,
+                      });
                 }
             }
             else if(cartItems.length === 0){
                 console.log("No items until now adding yours");
                 dispatch({type: 'addCartItem', cartItem: data})
+                toast.success("Product added in the Cart!", {
+                    position: toast.POSITION.TOP_LEFT,
+                  });
             }
         }
         else{

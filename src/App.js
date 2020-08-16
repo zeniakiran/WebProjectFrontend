@@ -21,6 +21,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Order from './components/OrdersPage';
 import OrderDisplay from './components/OrderDisplay';
+import userService from './components/services/UserService';
 
 function App() {
   return (
@@ -35,7 +36,7 @@ function App() {
             <MainPage/>
         </Route>
         <Route path="/Page2" exact>
-            <Page2/>
+        {userService.IsLoggedIn ? <Redirect to="/login" /> : <Page2 />}
         </Route>
         <Route path="/login" exact>
             <Login/>
@@ -47,7 +48,7 @@ function App() {
             <Order/>
         </Route>
         <Route path="/orderdisplay" exact>
-            <OrderDisplay/>
+        {userService.IsLoggedIn ? <Redirect to="/login" /> : <Page2 />}
         </Route>
         <Route path="/update/:id" render={(props) => (
         <UpdateProduct {...props} key={props.location.key} />
@@ -81,6 +82,9 @@ function App() {
         <Route path="/cart" render={(props) => (
         <SCart {...props} key={props.location.key} />
         )} exact>
+        </Route>
+        <Route>
+            <MainPage/>
         </Route>
       </Switch>
     </Router>

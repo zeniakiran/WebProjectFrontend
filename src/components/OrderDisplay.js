@@ -30,8 +30,15 @@ const OrderDisplay = () =>{
             console.log(" or",orders)
         }
     return(
-        <Grid container spacing={2}>
-        {elem}
+        <Grid containedr direction = "row">
+        <br />
+        <p id="pg">Orders Details</p>
+        <hr id="hr1"></hr>
+        <br />
+        <Grid item xs={3}>
+            {elem}
+        </Grid>
+
         </Grid>
     );
 }
